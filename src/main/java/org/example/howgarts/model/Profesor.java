@@ -22,9 +22,16 @@ public class Profesor {
 //    @Column(name = "apellido")
     private String apellido;
 
-    @Column(name = "id_asignatura")
-    private Long idAsignatura;
+//    @Column(name = "id_asignatura")
+//    private Long idAsignatura;
 
     @Column(name = "fecha_inicio")
     private Date fechaInicio;
+
+    @OneToOne(mappedBy = "profesor")
+    private Casa casa;
+
+    @OneToOne
+    @JoinColumn(name = "id_asignatura")
+    private Asignatura asignatura;
 }

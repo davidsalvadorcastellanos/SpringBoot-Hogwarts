@@ -1,10 +1,13 @@
 package org.example.howgarts.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,7 +26,7 @@ public class Estudiante {
     private String apellido;
 
     @Column(name = "id_casa")
-    private Long idCurso;
+    private Long idCasa;
 
     @Column(name = "anyo_curso")
     private Long anyoCurso;
@@ -31,4 +34,21 @@ public class Estudiante {
     @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
 
+    // RELACIONES
+
+    @OneToOne(mappedBy = "estudiante")
+    @JsonBackReference
+    private Mascota mascota;
+
+    @ManyToOne
+    @JoinColumn(name = "id_casa")
+    private Casa casa;
+
+    @ManyToMany
+    @JoinTable(
+            name = "estudiante_asignatura",
+            joinColumns = @JoinColumn(name = "id_estudiante"),
+            inverseJoinColumns = @JoinColumn(name = "id_asignatura")
+    )
+    private List<Asignatura> asignaturas;
 }

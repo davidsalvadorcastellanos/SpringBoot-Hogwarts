@@ -3,6 +3,8 @@ package org.example.howgarts.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "asignatura")
@@ -22,5 +24,9 @@ public class Asignatura {
 //    @Column(name = "obligatoria")
     private Boolean obligatoria;
 
+    @OneToOne(mappedBy = "asignatura")
+    private Profesor profesor;
 
+    @ManyToMany(mappedBy = "asignaturas")
+    private List<Estudiante> estudiantes;
 }
