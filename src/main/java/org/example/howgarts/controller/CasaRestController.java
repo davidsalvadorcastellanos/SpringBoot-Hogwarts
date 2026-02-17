@@ -1,6 +1,7 @@
 package org.example.howgarts.controller;
 
 
+import org.example.howgarts.dto.CasaDTO;
 import org.example.howgarts.model.Casa;
 import org.example.howgarts.service.CasaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/casas")
+@RequestMapping("/hogwarts/casas")
 public class CasaRestController {
 
     private final CasaService casaService;
@@ -24,20 +25,20 @@ public class CasaRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Casa>> obtenerTodasLasCasas(){
-        List<Casa> casas = casaService.obtenerTodasLasCasas();
-        if(casas == null){
+    public ResponseEntity<List<CasaDTO>> obtenerTodasLasCasas(){
+        List<CasaDTO> casasDto = casaService.obtenerTodasLasCasas();
+        if(casasDto == null){
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(casas);
+        return ResponseEntity.ok(casasDto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Casa> obtenerCasaPorId(@PathVariable Long id){
-        Casa casa = casaService.obtenerCasaPorId(id);
-        if(casa == null){
+    public ResponseEntity<CasaDTO> obtenerCasaPorId(@PathVariable Long id){
+        CasaDTO casaDto = casaService.obtenerCasaPorId(id);
+        if(casaDto == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(casa);
+        return ResponseEntity.ok(casaDto);
     }
 }

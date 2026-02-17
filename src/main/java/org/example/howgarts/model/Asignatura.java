@@ -1,5 +1,6 @@
 package org.example.howgarts.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,14 +20,15 @@ public class Asignatura {
     private String nombre;
 
 //    @Column(name = "aula")
-    private Long aula;
+    private String aula;
 
 //    @Column(name = "obligatoria")
     private Boolean obligatoria;
 
     @OneToOne(mappedBy = "asignatura")
+    @JsonBackReference
     private Profesor profesor;
 
-    @ManyToMany(mappedBy = "asignaturas")
-    private List<Estudiante> estudiantes;
+    @OneToMany(mappedBy = "asignatura")
+    private List<AsignaturaCalificacion> asignaturaCalificacions;
 }

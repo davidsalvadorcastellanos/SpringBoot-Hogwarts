@@ -1,12 +1,12 @@
 package org.example.howgarts.service;
 
-import org.example.howgarts.model.Casa;
+import org.example.howgarts.dto.CasaDTO;
 
 import java.util.List;
 
 public interface CasaService {
 
-    List<Casa> obtenerTodasLasCasas();
+    List<CasaDTO> obtenerTodasLasCasas();
 
-    Casa obtenerCasaPorId(Long id);
+    CasaDTO obtenerCasaPorId(Long id);
 }

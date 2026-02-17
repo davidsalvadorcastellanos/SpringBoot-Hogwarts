@@ -1,6 +1,8 @@
 package org.example.howgarts.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -29,9 +31,11 @@ public class Profesor {
     private Date fechaInicio;
 
     @OneToOne(mappedBy = "profesor")
+    @JsonBackReference
     private Casa casa;
 
     @OneToOne
     @JoinColumn(name = "id_asignatura")
+    @JsonManagedReference
     private Asignatura asignatura;
 }

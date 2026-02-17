@@ -1,6 +1,8 @@
 package org.example.howgarts.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -29,9 +31,11 @@ public class Casa {
     private String fantasma;
 
     @OneToMany(mappedBy = "casa")
+    @JsonBackReference
     private List<Estudiante> estudiantes;
 
     @OneToOne
     @JoinColumn(name = "id_jefe")
+    @JsonManagedReference
     private Profesor profesor;
 }
