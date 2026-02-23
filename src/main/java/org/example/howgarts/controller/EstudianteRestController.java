@@ -5,13 +5,11 @@ import jakarta.validation.Valid;
 import org.example.howgarts.dto.EstudianteDTO;
 import org.example.howgarts.dto.create.EstudianteCreateDTO;
 import org.example.howgarts.dto.update.EstudianteUpdateDTO;
-import org.example.howgarts.model.Estudiante;
 import org.example.howgarts.service.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

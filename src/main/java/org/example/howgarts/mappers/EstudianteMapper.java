@@ -84,7 +84,6 @@ public class EstudianteMapper {
         if (dto.getMascota() == null) {
             estudiante.setMascota(null);
         } else {
-            // Si ya tenía mascota, la actualizamos. Si no, creamos una nueva.
             if (estudiante.getMascota() == null) {
                 estudiante.setMascota(new Mascota());
             }

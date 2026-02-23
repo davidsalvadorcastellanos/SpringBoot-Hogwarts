@@ -69,7 +69,6 @@ public class EstudianteServiceImpl implements EstudianteService {
     public void borrarEstudiante(Long id) {
         Estudiante estudiante = estudianteRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("No se puede borrar: Estudiante con id " + id + " no encontrado"));
-
         estudianteRepository.delete(estudiante);
     }
 }
