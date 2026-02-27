@@ -10,20 +10,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class) // Inicializa Mockito sin cargar Spring
-class EstudianteTestService {
+@ExtendWith(MockitoExtension.class)
+public class EstudianteTestService {
 
-    @Mock // Crea un objeto simulado EstudianteRepository vacío
+    @Mock
     private EstudianteRepository estudianteRepository;
 
-    @InjectMocks // Crea la instancia del servicio e inyecta los mocks dentro
+    @InjectMocks
     private EstudianteServiceImpl estudianteService;
 
     private Estudiante estudianteTest;
@@ -32,21 +29,21 @@ class EstudianteTestService {
     void setUp() {
         estudianteTest = new Estudiante();
         estudianteTest.setIdEstudiante(1L);
-        estudianteTest.setNombre("usuario_test");
+        estudianteTest.setNombre("Harry");
+        estudianteTest.setApellido("Potter");
     }
 
     @Test
-    void eliminarEstudiante_Exito() {
-        // GIVEN (Preparación)
+    void borrar_Estudiante() {
+        // GIVEN
         Long id = 1L;
-        // Simulamos que el usuario existe y su lista de cuentas está vacía
         when(estudianteRepository.findById(id)).thenReturn(Optional.of(estudianteTest));
 
-        // WHEN (Ejecución)
+        // WHEN
         estudianteService.borrarEstudiante(id);
 
-        // THEN (Verificación)
-        // Verificamos que se llamó al método delete del repositorio exactamente una vez
+        // THEN
+        // Cambiamos deleteById por delete pasándole el objeto
         verify(estudianteRepository, times(1)).delete(estudianteTest);
     }
 }

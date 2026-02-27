@@ -29,5 +29,4 @@ public class Mascota {
     @JoinColumn(name = "id_estudiante", nullable = false)
     @JsonBackReference
     private Estudiante estudiante;
-
 }

@@ -1,6 +1,7 @@
 package org.example.howgarts.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.example.howgarts.dto.CasaDTO;
 import org.example.howgarts.model.Casa;
 import org.example.howgarts.service.CasaService;
@@ -25,6 +26,7 @@ public class CasaRestController {
     }
 
     @GetMapping
+    @Operation(summary = "Obtener todas las casas")
     public ResponseEntity<List<CasaDTO>> obtenerTodasLasCasas(){
         List<CasaDTO> casasDto = casaService.obtenerTodasLasCasas();
         if(casasDto == null){
@@ -34,6 +36,7 @@ public class CasaRestController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Obtener casa por id")
     public ResponseEntity<CasaDTO> obtenerCasaPorId(@PathVariable Long id){
         CasaDTO casaDto = casaService.obtenerCasaPorId(id);
         if(casaDto == null){
